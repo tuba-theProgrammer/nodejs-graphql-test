@@ -1,19 +1,11 @@
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const { GraphQLSchema } = require('graphql');
-const { QueryType, MutationType } = require('./Schema/schema');
-const { DB_HOST, DB_PORT, DB_NAME, DB_USER, DB_PASSWORD } = process.env;
-
-const Sequelize = require('sequelize'); // Add this import
-
+const  QueryType = require('./graphql/employee/query');
+const  MutationType = require('./graphql/employee/mutation');
+const db = require('./dbConfig');
 const app = express();
-
-const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
-  host: DB_HOST,
-  port: DB_PORT,
-  dialect: 'postgres',
-});
-
+db.init()
 app.use('/graphql', graphqlHTTP({
   schema: new GraphQLSchema({
     query: QueryType,
@@ -27,4 +19,3 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
 
-module.exports = sequelize;
