@@ -27,18 +27,6 @@ const Employee = db.sequelise.define('Employee', {
     type: DataTypes.DATE,
     allowNull: false,
   },
-  created_at: {
-    allowNull: false,
-    type: DataTypes.DATE,
-  },
-  updated_at: {
-    allowNull: false,
-    type: DataTypes.DATE,
-  },
-  deleted_at: {
-    allowNull: true,
-    type: DataTypes.DATE,
-  },
 });
 
 module.exports = Employee;
